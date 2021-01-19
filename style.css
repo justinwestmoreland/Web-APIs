@@ -1,0 +1,38 @@
+.border {
+    outline-color: black;
+    outline-width: 3px;
+}
+
+.nav-link {
+    color: white;
+}
+
+.navbar-brand {
+    margin-left: 25px;
+}
+
+button {
+    border-radius: 8px;
+    color: #13293d;
+    cursor: pointer;
+    font-size: 40px;
+    letter-spacing: 0.21px;
+    line-height: 16px;
+    max-width: 255px;
+    padding: 20px 52px;
+    text-align: center;
+    transition-duration: 0.15s;
+    /* transition-property: ; */
+    transition-timing-function: linear;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .timer-count{
+      text-align: center;
+      font-size: 25px;
+  }
+
+  .timer-text{
+    text-align: center;
+}
