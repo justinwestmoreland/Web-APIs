@@ -11,7 +11,7 @@
     margin-left: 25px;
 }
 
-button {
+.start-button {
     border-radius: 8px;
     color: #13293d;
     cursor: pointer;
@@ -26,13 +26,39 @@ button {
     transition-timing-function: linear;
     margin-top: 15px;
     margin-bottom: 15px;
-  }
+}
 
-  .timer-count{
-      text-align: center;
-      font-size: 25px;
-  }
+.submit-button {
+    border-radius: 8px;
+    color: #13293d;
+    cursor: pointer;
+    font-size: 20px;
+    letter-spacing: 0.21px;
+    line-height: 16px;
+    max-width: 255px;
+    padding: 10px 20px;
+    text-align: center;
+    transition-duration: 0.15s;
+    /* transition-property: ; */
+    transition-timing-function: linear;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 
-  .timer-text{
+.timer-count {
+    text-align: center;
+    font-size: 25px;
+}
+
+.timer-text {
+    text-align: center;
+}
+
+.score-count {
+    text-align: center;
+    font-size: 25px;
+}
+
+.score-text {
     text-align: center;
 }
