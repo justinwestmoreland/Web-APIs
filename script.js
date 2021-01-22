@@ -8,17 +8,11 @@ var timerCount;
 var questionAsked = document.getElementById("question");
 var placeHolder1 = document.getElementById("placeholder1");
 var placeHolder2 = document.getElementById("placeholder2");
-var answer1 = document.getElementById("answer1");
-var answer2 = document.getElementById("answer2");
-var answer3 = document.getElementById("answer3");
-var answer4 = document.getElementById("answer4");
-
+var answers = document.querySelector("#answers");
+var qIndex;
 var timer;
 // Start button, event listener will trigger timer to start AND first quiz question to pop up
-var startButton = document.querySelector(".start-button");
 var score = 0;
-scoreCount.textContent = score;
-
 
 
 function startQuiz() {
@@ -29,172 +23,84 @@ function startQuiz() {
     // startTimer ();
     console.log("Start Button Works", timerCount);
     startTimer();
-    quizQuestions();
+    askQuestion();
     placeHolder1.textContent = "";
     placeHolder2.textContent = "";
 
 }
 
 function startTimer() {
-    //need to set the timer as we did in the word search game
     timer = setInterval(function() {
         timerCount--;
         timerElement.textContent = timerCount;
 
-        if (timerCount === 0) {
-            // Clears interval
+        if (timerCount <= 0) {
+            timerElement.textContent = 0;
             clearInterval(timer);
-            // endQuiz();  ********** when the timer hits zero you will need this function to pop up the high scores and end the game. Not sure how to do this yet
+            endGame();
         }
 
     }, 1000);
     console.log("Timer is started");
 }
-// make an array of 4-5 questions here, don't be shy. We will put the text content into the questions once we get the functionality to work. 
-// var questions = ["The correct Answer to this Question is A", "The correct Answer to this Question is B", "The correct Answer to this Question is C", "The correct Answer to this Question is D"];
 
 var questions = [{
         question: "The correct Answer to this Question is 1",
         answers: ["Option 1", "Option 2", "Option 3", "Option 4"],
-        correctAnswer: "a"
+        correctAnswer: "Option 1"
     },
-
     {
         question: "The correct Answer to this Question is 2",
-        answers: ["Option 1", "Option 2", "Option 3", "Option 4"],
-        correctAnswer: "b"
+        answers: ["11111111", "222222", "3333333", "444444"],
+        correctAnswer: "222222"
     },
-
     {
         question: "The correct Answer to this Question is 3",
         answers: ["Option 1", "Option 2", "Option 3", "Option 4"],
-        correctAnswer: "c"
+        correctAnswer: "Option 3"
     },
-
     {
         question: "The correct Answer to this Question is 4",
         answers: ["Option 1", "Option 2", "Option 3", "Option 4"],
-        correctAnswer: "d"
+        correctAnswer: "Option 4"
     },
-
 ]
+var qIndex = 0;
+var currentQuestion = questions[qIndex];
 
-function wrongAnswer() {
-    console.log("WRONG!");
+
+function askQuestion() {
+    scoreCount.textContent = score;
+    answers.innerHTML = "";
+    currentQuestion = questions[qIndex];
+    questionAsked.textContent = currentQuestion.question;
+    currentQuestion.answers.forEach(function(answer) {
+        var answerDiv = document.createElement("div");
+        answerDiv.textContent = answer;
+        answerDiv.addEventListener("click", clickFunction);
+        answers.append(answerDiv);
+    });
 }
 
-// Display the questions here and hide the placeholders
+function clickFunction() {
+    qIndex = qIndex + 1;
+    if (qIndex < questions.length && this.textContent === currentQuestion.correctAnswer) {
+        score = score + 100;
+        askQuestion();
 
-function quizQuestions() {
-
-    question0()
-
-    function question0() {
-        questionAsked.textContent = questions[0].question;
-        answer1.textContent = questions[0].answers[0];
-        answer2.textContent = questions[0].answers[1];
-        answer3.textContent = questions[0].answers[2];
-        answer4.textContent = questions[0].answers[3];
-
-        // var correctAnswer = answer1
-
-        // function chooseAnswer() {
-        //     if (answer1) {
-        //         question2();
-        //     }
-        //     if (answer2 || answer3 || answer4) {
-        //         console.log("wrong, dummy");
-        //     }
-        // }
-
-        answer1.addEventListener("click", question1);
-        answer2.addEventListener("click", wrongAnswer);
-        answer3.addEventListener("click", wrongAnswer);
-        answer4.addEventListener("click", wrongAnswer);
-
+    } else if (qIndex = questions.length && this.textContent === currentQuestion.correctAnswer) {
+        score = score + 100;
+        endGame();
+    } else if (this.textContent !== currentQuestion.correctAnswer) {
+        timerCount = timerCount - 10;
     }
-
-    function question1() {
-        questionAsked.textContent = questions[1].question;
-        answer1.textContent = questions[1].answers[0];
-        answer2.textContent = questions[1].answers[1];
-        answer3.textContent = questions[1].answers[2];
-        answer4.textContent = questions[1].answers[3];
-
-        answer1.addEventListener("click", logEvent);
-
-        var logEvent = console.log("What is this doing?");
-
-        answer1.addEventListener("click", wrongAnswer);
-        answer2.addEventListener("click", question2);
-        answer3.addEventListener("click", wrongAnswer);
-        answer4.addEventListener("click", wrongAnswer);
-
-    }
-
-    function question2() {
-        questionAsked.textContent = questions[2].question;
-        answer1.textContent = questions[2].answers[0];
-        answer2.textContent = questions[2].answers[1];
-        answer3.textContent = questions[2].answers[2];
-        answer4.textContent = questions[2].answers[3];
-
-        answer1.addEventListener("click", wrongAnswer);
-        answer2.addEventListener("click", wrongAnswer);
-        answer3.addEventListener("click", question3);
-        answer4.addEventListener("click", wrongAnswer);
-
-    }
-
-    function question3() {
-        questionAsked.textContent = questions[3].question;
-        answer1.textContent = questions[3].answers[0];
-        answer2.textContent = questions[3].answers[1];
-        answer3.textContent = questions[3].answers[2];
-        answer4.textContent = questions[3].answers[3];
-
-        answer1.addEventListener("click", wrongAnswer);
-        answer2.addEventListener("click", wrongAnswer);
-        answer3.addEventListener("click", wrongAnswer);
-        answer4.addEventListener("click", finalScore);
-    }
-
-    function addScore() {
-        score + "20";
-
-    }
-
-    function finalScore() {
-        console.log("Game Over");
-    }
-
-    // ** I'm pretty sure I can minimize this code with a for loop
-    // var choices = []
-    // for (var i = 0; i < answers.length; i++) {
-    //     choices = questions[0].answers[i];
-    //     answer1.textContent = choices;
-    //     choices.push(answers[i]);
-
-    // }
-
-    // answer1.textContent = question[0].answers[0];
-    // answer2.textContent = question[0].answer2;
-    // answer3.textContent = question[0].answer3;
-    // answer4.textContent = question[0].answer4;
-
-
-
 }
 
+function endGame() {
+    scoreCount.textContent = score;
+    answers.innerHTML = "";
+    questionAsked.innerHTML = "Game OVER!";
 
-
-
-
-
-
-
-
-
-
+}
 
 startButton.addEventListener("click", startQuiz);
