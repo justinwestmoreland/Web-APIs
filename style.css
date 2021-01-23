@@ -47,18 +47,48 @@
 
 .timer-count {
     text-align: center;
-    font-size: 25px;
+    font-size: x-large;
+    font-weight: 500;
 }
 
 .timer-text {
     text-align: center;
+    font-size: x-large;
+    font-weight: 500;
 }
 
 .score-count {
+    margin-top: 15px;
     text-align: center;
-    font-size: 25px;
+    font-size: x-large;
+    font-weight: 500;
 }
 
 .score-text {
     text-align: center;
+    font-size: x-large;
+    font-weight: 500;
+}
+
+#question {
+    font-weight: 500;
+    font-size: x-large;
+}
+
+#answers {
+    cursor: pointer;
+}
+
+#display-box {
+    font-size: 25px;
+    letter-spacing: 0.21px;
+    padding: 20px 20px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* padding: 50px; */
+}
+
+.question-box {
+    margin-bottom: 20px;
 }

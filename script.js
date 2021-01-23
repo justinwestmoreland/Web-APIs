@@ -9,10 +9,13 @@ var questionAsked = document.getElementById("question");
 var placeHolder1 = document.getElementById("placeholder1");
 var placeHolder2 = document.getElementById("placeholder2");
 var answers = document.querySelector("#answers");
-var qIndex;
+var qIndex = 0;
 var timer;
+var displayBox = document.getElementById("display-box");
 // Start button, event listener will trigger timer to start AND first quiz question to pop up
 var score = 0;
+scoreCount.textContent = "-";
+
 
 
 function startQuiz() {
@@ -45,34 +48,36 @@ function startTimer() {
 }
 
 var questions = [{
-        question: "The correct Answer to this Question is 1",
-        answers: ["Option 1", "Option 2", "Option 3", "Option 4"],
-        correctAnswer: "Option 1"
+        question: "Inside which HTML element do we put the JavaScript?",
+        answers: ["A. <js>", "B. <javascript>", "C. <script>", "D. <scripting>"],
+        correctAnswer: "C. <script>"
     },
     {
-        question: "The correct Answer to this Question is 2",
-        answers: ["11111111", "222222", "3333333", "444444"],
-        correctAnswer: "222222"
+        question: "Which built-in method returns the length of the string?",
+        answers: ["A. length()", "B. size()", "C. index()", "D. width()"],
+        correctAnswer: "A. length()"
     },
     {
-        question: "The correct Answer to this Question is 3",
-        answers: ["Option 1", "Option 2", "Option 3", "Option 4"],
-        correctAnswer: "Option 3"
+        question: "What is the correct syntax for referring to an external script called “geek.js”?",
+        answers: ["A. <script src=”geek.js”>", "B. <script href=”geek.js”>", "C. <script ref=”geek.js”>", "D. <script name=”geek.js”>"],
+        correctAnswer: "A. <script src=”geek.js”>"
     },
     {
-        question: "The correct Answer to this Question is 4",
-        answers: ["Option 1", "Option 2", "Option 3", "Option 4"],
-        correctAnswer: "Option 4"
+        question: "In JavaScript an _____ can be used to store multiple values in a single variable.",
+        answers: ["A. array", "B. sun ray", "C. death ray", "D. HTML"],
+        correctAnswer: "A. array"
     },
 ]
-var qIndex = 0;
 var currentQuestion = questions[qIndex];
-
 
 function askQuestion() {
     scoreCount.textContent = score;
     answers.innerHTML = "";
     currentQuestion = questions[qIndex];
+    //added this for correct answer
+    console.log(questions);
+    console.log(qIndex);
+
     questionAsked.textContent = currentQuestion.question;
     currentQuestion.answers.forEach(function(answer) {
         var answerDiv = document.createElement("div");
@@ -86,13 +91,35 @@ function clickFunction() {
     qIndex = qIndex + 1;
     if (qIndex < questions.length && this.textContent === currentQuestion.correctAnswer) {
         score = score + 100;
+        displayBox.textContent = "Correct!"
+        setTimeout(function() {
+            displayBox.textContent = "";
+        }, 1000);
         askQuestion();
 
-    } else if (qIndex = questions.length && this.textContent === currentQuestion.correctAnswer) {
+    } else if (qIndex === questions.length && this.textContent === currentQuestion.correctAnswer) {
         score = score + 100;
+        displayBox.textContent = "Correct!"
+        setTimeout(function() {
+            displayBox.textContent = "";
+        }, 1000);
         endGame();
-    } else if (this.textContent !== currentQuestion.correctAnswer) {
+
+
+    } else if (qIndex < questions.length && this.textContent !== currentQuestion.correctAnswer) {
         timerCount = timerCount - 10;
+        displayBox.textContent = "Incorrect";
+        setTimeout(function() {
+            displayBox.textContent = "";
+        }, 1000);
+        askQuestion();
+    } else if (qIndex = questions.length && this.textContent !== currentQuestion.correctAnswer) {
+        timerCount = timerCount - 10;
+        displayBox.textContent = "Incorrect";
+        setTimeout(function() {
+            displayBox.textContent = "";
+        }, 1000);
+        endGame();
     }
 }
 
@@ -100,7 +127,7 @@ function endGame() {
     scoreCount.textContent = score;
     answers.innerHTML = "";
     questionAsked.innerHTML = "Game OVER!";
-
+    timerCount = 0;
 }
 
 startButton.addEventListener("click", startQuiz);
