@@ -22,7 +22,6 @@
     padding: 20px 52px;
     text-align: center;
     transition-duration: 0.15s;
-    /* transition-property: ; */
     transition-timing-function: linear;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -39,7 +38,6 @@
     padding: 10px 20px;
     text-align: center;
     transition-duration: 0.15s;
-    /* transition-property: ; */
     transition-timing-function: linear;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -82,13 +80,22 @@
 #display-box {
     font-size: 25px;
     letter-spacing: 0.21px;
-    padding: 20px 20px;
     text-align: center;
     margin-top: 20px;
-    margin-bottom: 20px;
-    /* padding: 50px; */
 }
 
 .question-box {
     margin-bottom: 20px;
+}
+
+#final-score {
+    font-size: 25px;
+    letter-spacing: 0.21px;
+    text-align: center;
+}
+
+#final-score-text {
+    font-size: 25px;
+    letter-spacing: 0.21px;
+    text-align: center;
 }

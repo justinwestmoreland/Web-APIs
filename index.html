@@ -21,10 +21,10 @@
         <div class="collapse navbar-collapse" id="navbarmenu">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="">Restart Game</a>
+                    <a class="nav-link" href="">Restart</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="5">View High Scores</a>
+                    <a class="nav-link" href="highscores.html">View Leaderboard</a>
                 </li>
             </ul>
         </div>
@@ -45,14 +45,6 @@
                 <div class="timer-text">
                     seconds remaining
                 </div>
-                <!-- <div class="score-count">
-                    <h2></h2>
-                </div>
-
-                <div class="score-text">
-                    <h3>Total Points</h3>
-                </div> -->
-
             </div>
         </div>
 
@@ -61,6 +53,11 @@
                 <h3 id="placeholder1"> Answer the following JavaScript questions correctly to earn points</h3>
                 <h3 id="placeholder2"> Incorrect answers will result in the loss of time!</h3>
 
+                <form id="initials-box" style="display: none;" method="POST">
+                    <label for="initials-box">Initials and Score: </label>
+                    <input type="text" placeholder="Enter Here" name="initials" id="initials" />
+                </form>
+
 
                 <div id="question"></div>
 
@@ -68,15 +65,8 @@
             </div>
             <div class="col-md-2">
 
-                <!-- <div class="timer-count">
-                    60
-                </div>
-
-                <div class="timer-text">
-                    seconds remaining
-                </div> -->
                 <div class="score-count">
-                    -
+
                 </div>
 
                 <div class="score-text">
@@ -91,7 +81,10 @@
 
         <div class="row">
             <div class="col-md-10">
-                <p id="display-box"></p>
+                <div id="display-box"></div>
+                <div id="final-score-text"></div>
+                <div id="final-score"></div>
+
             </div>
 
         </div>
