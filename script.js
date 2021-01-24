@@ -1,55 +1,50 @@
-//variables go here
+// set all my variables to link to my HTML document here
 var startButton = document.querySelector(".start-button");
-// the number that is displayed on the timer
 var timerElement = document.querySelector(".timer-count");
-// the variable that will count down
 var scoreCount = document.querySelector(".score-count");
-var timerCount;
 var questionAsked = document.getElementById("question");
 var placeHolder1 = document.getElementById("placeholder1");
 var placeHolder2 = document.getElementById("placeholder2");
 var answers = document.querySelector("#answers");
-
-var qIndex = 0;
-var timer;
 var displayBox = document.getElementById("display-box");
-// Start button, event listener will trigger timer to start AND first quiz question to pop up
-var score = 0;
-scoreCount.textContent = "-";
 var finalScore = document.querySelector('#final-score');
 var finalScoreText = document.querySelector('#final-score-text');
-var scoresArray = [];
+
+// setting the rest of the global variables for the below functions
+var timerCount;
+var qIndex = 0;
+var timer;
+var score = 0;
+scoreCount.textContent = "-";
 
 
+// quiz is started by clicking the start button initiated by an event listener at the bottom of the code. This startQuiz function sets the timer count, 
+// disables the start button from being clicked again, starts the timer, renders a question and answers, and hides the placeholder text that renders on
+// the screen to explain the rules.
 function startQuiz() {
     timerCount = 60;
-    // prevent restart
     startButton.disabled = true;
-    //call the function for the timer to start running
-    // startTimer ();
-    // console.log("Start Button Works", timerCount);
     startTimer();
     askQuestion();
     placeHolder1.textContent = "";
     placeHolder2.textContent = "";
-
 }
 
+// this function starts the timer, sets the interval to count down by 1 number every 1000ms, and clears the timer if the number gets to (or below) zero. 
+// it also sets the text content of my timer element to whatever my timer count is. 
 function startTimer() {
     timer = setInterval(function() {
         timerCount--;
         timerElement.textContent = timerCount;
-
         if (timerCount <= 0) {
             timerElement.textContent = 0;
             clearInterval(timer);
             endGame();
         }
-
     }, 1000);
-    console.log("Timer is started");
 }
 
+// my array of questions that are rendered by my askquestion function
 var questions = [{
         question: "Inside which HTML element do we put the JavaScript?",
         answers: ["A. <js>", "B. <javascript>", "C. <script>", "D. <scripting>"],
@@ -71,8 +66,13 @@ var questions = [{
         correctAnswer: "A. array"
     },
 ]
+
+//created a variable for current question that is set to the question index position in the array
 var currentQuestion = questions[qIndex];
 
+
+// this function renders the questions from the above array. a new div is created for each answer in the array. event listener deterimines the correct answer by
+// comparing the value of the object that is clicked to the value in the array stored as correctAnswer. 
 function askQuestion() {
     scoreCount.textContent = score;
     answers.innerHTML = "";
@@ -81,7 +81,6 @@ function askQuestion() {
     setTimeout(function() {
         displayBox.textContent = "";
     }, 1000);
-
     questionAsked.textContent = currentQuestion.question;
     currentQuestion.answers.forEach(function(answer) {
         var answerDiv = document.createElement("div");
@@ -91,19 +90,18 @@ function askQuestion() {
     });
 }
 
+// if there are questions left to ask and the question is answered, regardless if correct or not, we will call askQuestion and render another question. If there are
+// no other questions to ask, we call endGame.
 function clickFunction() {
     qIndex = qIndex + 1;
     if (qIndex < questions.length && this.textContent === currentQuestion.correctAnswer) {
         score = score + 100;
         displayBox.textContent = "Correct!"
         askQuestion();
-
     } else if (qIndex === questions.length && this.textContent === currentQuestion.correctAnswer) {
         score = score + 100;
         displayBox.textContent = "Correct!"
         endGame();
-
-
     } else if (qIndex < questions.length && this.textContent !== currentQuestion.correctAnswer) {
         timerCount = timerCount - 10;
         displayBox.textContent = "Incorrect";
@@ -115,6 +113,8 @@ function clickFunction() {
     }
 }
 
+// at the end of the game, we zero out all the divs that pertained to asking questions and send our score to local storage. We also zero out our timer and display 
+// the block for the player to enter their initials and score. 
 function endGame() {
     scoreCount.textContent = score;
     answers.innerHTML = "";
@@ -128,8 +128,7 @@ function endGame() {
 };
 
 
-
-
+// this connects the initials and score box to the HTML page. Initials are stored in local stoarage to be displayed on the Leaderboard Page
 var initialsBox = document.querySelector("#initials-box");
 var initialsDisplay = initialsBox.style.display;
 var initialsInput = document.querySelector("#initials");
@@ -138,24 +137,15 @@ var initialsArray = [];
 function storeInitials() {
     localStorage.setItem("initials", JSON.stringify(initialsArray));
 }
-
 initialsBox.addEventListener("submit", function(event) {
     event.preventDefault();
-
     var initialsText = initialsInput.value.trim();
-
-    // Return from function early if blank
     if (initialsText === "") {
         return;
     }
-
-    // Add new todoText to todos array, clear the input
     initialsArray.push(initialsText);
     initialsInput.value = "";
-
-    // Store updated todos in localStorage, re-render the list
     storeInitials();
-
     window.location.href = "highscores.html";
 });
 
