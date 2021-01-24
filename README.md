@@ -14,6 +14,8 @@ game ends when the timer gets to 0 OR all the questions are answered correctly
 
 after the game ends, I can put my initials in where my score is. I'm assuming the score is how many quesitons you got correctly in what amount of time. 
 
+Enjoy learning all about JavaScript!
 
-
+![landing page screenshot](landingpage.png)
+![leaderboard screenshot](leaderboard.png)
 
