@@ -16,6 +16,6 @@ after the game ends, I can put my initials in where my score is. I'm assuming th
 
 Enjoy learning all about JavaScript!
 
-![landing page screenshot](landingpage.png)
-![leaderboard screenshot](leaderboard.png)
+![landing page screenshot](./Assets/landingpage.png)
+![leaderboard screenshot](./Assets/leaderboard.png)
 
