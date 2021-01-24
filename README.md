@@ -1,20 +1,20 @@
 # Web-APIs
 
-Make an HTML landing page with a container for quiz questions to pop up, like a slide show almost
+This project was a ground up build of a quiz all about JavaScript. I started by making a project outline and coded and commited updates with the following roadmap. 
 
-Navbar with a timer or a timer somewhere on the page?
+1. Wireframe the quiz and leaderboard page. 
+2. Create main index.html, create highscores.html, created css and js files. 
+3. Mock up the front end design using css bootstrap. 
+4. Started with Timer and one question scoring.
+5. Build logic to continually ask question. 
+6. Program leaderboard. 
 
-Upon clicking the start button, the timer starts and the first question pops up
+This was the most challenging project of the course for me so far, but mostly due to the ambiguity of javascript programming. While googling when I hit roadblocks I would find multiple ways to solve problems and I found myself getting drawn towards finding out which one was more correct, which was futile. 
 
-After question is answered, correctly or not, another question appears. 
+The project also gave me my first exposure of hours of bug chasing. Although rewarding when found, it was one of the most frustrating processes to date. Looking back, it gave me a much deeper understanding of my code. 
 
---If answered incorrectly, time is deducted from the clock
+I hope you enjoy my quiz! 
 
-game ends when the timer gets to 0 OR all the questions are answered correctly 
-
-after the game ends, I can put my initials in where my score is. I'm assuming the score is how many quesitons you got correctly in what amount of time. 
-
-Enjoy learning all about JavaScript!
 
 ![landing page screenshot](./Assets/landingpage.png)
 ![leaderboard screenshot](./Assets/leaderboard.png)
